@@ -78,55 +78,55 @@ class UserAccountDetails extends React.Component {
 
     
     // UNCOMMENT THIS 
-    // UNSAFE_componentWillMount() {
+    UNSAFE_componentWillMount() {
 
-    //     console.log("Dwergty")
-    //     this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").onSnapshot((snapshot, changes) => {
-    //         if (!snapshot.empty) {
-    //             var data = snapshot.data()
-    //             if (data.rfid_request === false && data.rfid !== "request pending" && data.last_edited !== "client") {
-    //                 // alert("There is some change in document and that is rfid entered")
+        console.log("Dwergty")
+        this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").onSnapshot((snapshot, changes) => {
+            if (!snapshot.empty) {
+                var data = snapshot.data()
+                if (data.rfid_request === false && data.rfid !== "request pending" && data.last_edited !== "client") {
+                    // alert("There is some change in document and that is rfid entered")
 
-    //                 this.setState({
-    //                     rfid: String(data.rfid._binaryString)
-    //                 })
+                    this.setState({
+                        rfid: String(data.rfid._binaryString)
+                    })
 
-    //                 this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").set({
-    //                     "init_time": new Date(),
-    //                     "rfid": String("no thing to worry about"),
-    //                     "rfid_request": false,
-    //                     "last_edited": "client"
-    //                 })
-    //             }
-    //         }
-    //     })
-    // }
+                    this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").set({
+                        "init_time": new Date(),
+                        "rfid": String("no thing to worry about"),
+                        "rfid_request": false,
+                        "last_edited": "client"
+                    })
+                }
+            }
+        })
+    }
 
-    // handleShouldSubmit = (bool) => {
-    //     if(bool) {
-    //         this.shouldFormSubmit += 1
-    //     }
-    //     return bool
+    handleShouldSubmit = (bool) => {
+        if(bool) {
+            this.shouldFormSubmit += 1
+        }
+        return bool
 
-    // }
+    }
  
     handleRfidClick = () => {
-        // console.log("yeksdbferjkt", this.props.firebase)
-        // this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").set({
-        //     "init_time": new Date(),
-        //     "rfid": String("request pending"),
-        //     "rfid_request": true,
-        //     "last_edited": "client"
-        // }).then(success => {
-        //     this.setState({
-        //         rfid: "The first rfid scanned would be assigned to this employee"
-        //     })
-        // }).catch(err => {
-        //     alert("Please check ur internet connection")
-        // })
-        // this.setState({
-        //     rfid: ""
-        // })
+        console.log("yeksdbferjkt", this.props.firebase)
+        this.props.firebase.getTempRfidRef().doc("store_rfid_temp_id").set({
+            "init_time": new Date(),
+            "rfid": String("request pending"),
+            "rfid_request": true,
+            "last_edited": "client"
+        }).then(success => {
+            this.setState({
+                rfid: "The first rfid scanned would be assigned to this employee"
+            })
+        }).catch(err => {
+            alert("Please check ur internet connection")
+        })
+        this.setState({
+            rfid: ""
+        })
         this.setState({rfid_loading: !this.state.rfid_loading})
     }
     
